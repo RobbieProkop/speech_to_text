@@ -23,8 +23,10 @@ def record_audio(ask = False):
       voice_data = r.recognize_google(audio)
     except sr.UnknownValueError:
       yulia_speak('Sorry, I did not understand that')
+      print('Sorry, I did not understand that')
     except sr.RequestError:
       yulia_speak("Apologies, my speech service is down")
+      print("Apologies, my speech service is down")
   
     return voice_data
 
@@ -40,10 +42,12 @@ def yulia_speak(audio_string):
 def respond(voice_data):
   if "what is your name" in voice_data:
     yulia_speak("My name is Yulia")
+    print("My name is Yulia")
   if 'what time is it' in voice_data:
     yulia_speak(ctime())
+    print(ctime())
   if 'what date is it' in voice_data:
-    yulia_speak(ctime())
+    print(ctime())
   if 'yulia search' in voice_data:
     search = record_audio("what do you want to search for?")
     # searches brave with the search term
@@ -51,6 +55,7 @@ def respond(voice_data):
     # opens a new web browser with the search
     webbrowser.get().open(url)
     yulia_speak("here is what found for " + search)
+    print("here is what found for " + search)
     
   # location with google maps
   if ' yulia find location' in voice_data:
@@ -60,10 +65,12 @@ def respond(voice_data):
     # opens a new web browser with the search
     webbrowser.get().open(url)
     yulia_speak('Here is the location of ' + location)
+    print('Here is the location of ' + location)
     
   # exit / close the program
   if "exit" in voice_data:
     yulia_speak('Goodbye')
+    print('Goodbye')
     exit()
 # continuouse listening
 time.sleep(1)
