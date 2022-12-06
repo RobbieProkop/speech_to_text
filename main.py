@@ -1,5 +1,6 @@
 import speech_recognition as sr
 import webbrowser
+import time
 
 # tell the time
 from time import ctime
@@ -42,10 +43,17 @@ def respond(voice_data):
     # opens a new web browser with the search
     webbrowser.get().open(url)
     print('Here is the location of ' + location)
+    
+  # exit / close the program
+  if "exit" in voice_data:
+    exit()
+# continuouse listening
+time.sleep(1)
 
 print("How can I help you?")
-voice_data = record_audio()
-respond(voice_data)
+while 1:
+  voice_data = record_audio()
+  respond(voice_data)
 
 
   
