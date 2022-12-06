@@ -2,6 +2,12 @@ import speech_recognition as sr
 import webbrowser
 import time
 
+# dependencies of playing sound back
+import playsound
+import os
+import random
+from gtts import gTTS
+
 # tell the time
 from time import ctime
 
@@ -21,6 +27,15 @@ def record_audio(ask = False):
       print("Apologies, my speech service is down")
   
     return voice_data
+
+def yulia_speak(audio_string):
+  tts = gTTS(text=audio_string, lang='en')
+  r = random.randint(1, 10000000)
+  audio_file = 'audio-' + str(r) +'.mp3'
+  tts.save(audio_file)
+  playsound.playsound(audio_file)
+  print(audio_string)
+  os.remove(audio_file)
 
 def respond(voice_data):
   if "what is your name" in voice_data:
