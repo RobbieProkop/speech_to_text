@@ -33,6 +33,15 @@ def respond(voice_data):
     # opens a new web browser with the search
     webbrowser.get().open(url)
     print("here is what found for " + search)
+    
+  # location with google maps
+  if 'find location' in voice_data:
+    location = record_audio("what is the location?")
+    # searches brave with the search term
+    url = 'https://google.nl/maps/place/' + location + "/&amp;"
+    # opens a new web browser with the search
+    webbrowser.get().open(url)
+    print('Here is the location of ' + location)
 
 print("How can I help you?")
 voice_data = record_audio()
